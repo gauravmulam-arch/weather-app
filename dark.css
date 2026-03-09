@@ -1,0 +1,29 @@
+/* ---------- DARK MODE ---------- */
+
+body.dark {
+  background: #121212;
+  color: white;
+}
+
+body.dark .weather-info {
+  background: linear-gradient(135deg, #232526, #414345);
+}
+
+body.dark .bottom-nav {
+  background: #1f1f1f;
+}
+
+body.dark .search-box input {
+  background: #333;
+  color: white;
+}
+
+/* Ensure text visibility */
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark p,
+body.dark span,
+body.dark label {
+  color: white;
+}
