@@ -98,7 +98,15 @@ function resetAccount(){
 function isUserLoggedIn() {
   return localStorage.getItem("isLoggedIn") === "true";
 }
+window.onload = function() {
 
+  const savedAvatar = localStorage.getItem("profileAvatar");
+
+  if (savedAvatar) {
+    document.getElementById("profileAvatar").src = savedAvatar;
+  }
+
+};
 /* ================= THEME ================= */
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark");
@@ -482,6 +490,7 @@ function uploadAvatar(event) {
 
   reader.readAsDataURL(file);
 }
+
 
 
 
