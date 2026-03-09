@@ -22,41 +22,29 @@ function login(event) {
   const username = document.getElementById("user").value.trim();
   const password = document.getElementById("pass").value.trim();
   const message = document.getElementById("loginMessage");
-  const button = event.target.querySelector("button");
-
-  message.textContent = "";
-  message.className = "form-message";
 
   const savedUser = localStorage.getItem("savedUser");
   const savedPass = localStorage.getItem("savedPass");
 
-  if (!savedUser || !savedPass) {
-    message.textContent = "No account found. Please sign up first.";
+  message.textContent = "";
+  message.className = "form-message";
+
+  if (username === savedUser && password === savedPass) {
+
+    // ✅ IMPORTANT LINE
+    localStorage.setItem("isLoggedIn", "true");
+
+    message.textContent = "Login successful! Redirecting...";
+    message.classList.add("success");
+
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 1000);
+
+  } else {
+    message.textContent = "Invalid username or password";
     message.classList.add("error");
-    return;
   }
-
-  button.classList.add("loading");
-  button.textContent = "Logging in...";
-
-  setTimeout(() => {
-    if (username === savedUser && password === savedPass) {
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("username", username);
-
-      message.textContent = "Login successful!";
-      message.classList.add("success");
-
-      setTimeout(() => {
-        window.location.replace("../index.html");
-      }, 800);
-    } else {
-      message.textContent = "Invalid username or password";
-      message.classList.add("error");
-      button.classList.remove("loading");
-      button.textContent = "Login";
-    }
-  }, 600);
 }
 /* ================= SIGNUP ================= */
 function signup(event) {
@@ -95,14 +83,13 @@ function signup(event) {
 /* ================= LOGOUT ================= */
 function logout() {
   localStorage.removeItem("isLoggedIn");
-  window.location.replace("/pages/login.html");
-}
+  window.location.replace("login.html");
+ }
 
 /* ================= RESET ACCOUNT ================= */
-function resetAccount() {
+function resetAccount(){
   localStorage.clear();
-  alert("Account reset. Please sign up again.");
-  window.location.href = "signup.html";
+  alert("Account reset successfully");
 }
 
 function isUserLoggedIn() {
