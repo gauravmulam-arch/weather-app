@@ -464,19 +464,20 @@ function toggleNotifications() {
   }
 }
 function uploadAvatar(event) {
+
   const file = event.target.files[0];
+
   if (!file) return;
 
   const reader = new FileReader();
 
-  reader.onload = function (e) {
-    const imageData = e.target.result;
+  reader.onload = function(e) {
 
-    // Update UI
-    document.getElementById("profileAvatar").src = imageData;
+    const img = document.getElementById("profileAvatar");
+    img.src = e.target.result;
 
-    // Save image permanently
-    localStorage.setItem("profileAvatar", imageData);
+    localStorage.setItem("profileAvatar", e.target.result);
+
   };
 
   reader.readAsDataURL(file);
