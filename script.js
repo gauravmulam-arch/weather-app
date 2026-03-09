@@ -85,9 +85,9 @@ function signup(event) {
 
 /* ================= LOGOUT ================= */
 function logout() {
-  localStorage.removeItem("isLoggedIn");
-  window.location.replace("login.html");
- }
+  localStorage.clear();
+  window.location.href = "login.html";
+}
 
 /* ================= RESET ACCOUNT ================= */
 function resetAccount(){
@@ -480,4 +480,5 @@ function uploadAvatar(event) {
 
   reader.readAsDataURL(file);
 }
+
 
