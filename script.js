@@ -391,35 +391,36 @@ function drawTemperatureChart(data) {
   });
 }
 function getLocationWeather() {
+
   if (!navigator.geolocation) {
-    alert("Geolocation not supported");
+    alert("Geolocation is not supported by this browser.");
     return;
   }
 
-  document.getElementById("loadingText").style.display = "block";
+  navigator.geolocation.getCurrentPosition(
+    function(position) {
 
-  navigator.geolocation.getCurrentPosition(pos => {
-    const lat = pos.coords.latitude;
-    const lon = pos.coords.longitude;
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
 
-    const apiKey = "c55bb5e40d49ac9d1ba7d5a1ad812c31";
+      console.log("Location:", lat, lon);
 
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
-    )
-      .then(res => res.json())
-      .then(data => {
-        updateCurrentWeather(data);
-        showWeatherAlert(data);
-        
-        // ✅ AQI WORKS HERE TOO
-        getAirQualityByCity(data.name);
+      getWeatherByCoords(lat, lon);
 
-        getForecast(data.name);
-        incrementStat("location");
-        document.getElementById("loadingText").style.display = "none";
-      });
-  });
+    },
+    function(error) {
+
+      alert("Location permission denied or unavailable.");
+
+      console.log(error);
+
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0
+    }
+  );
 }
 document.addEventListener("DOMContentLoaded", () => {
   const saved = localStorage.getItem("mapWeatherData");
@@ -480,5 +481,6 @@ function uploadAvatar(event) {
 
   reader.readAsDataURL(file);
 }
+
 
 
