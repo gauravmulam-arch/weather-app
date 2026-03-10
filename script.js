@@ -479,6 +479,32 @@ function uploadAvatar(event) {
 
   reader.readAsDataURL(file);
 }
+function getWeatherByCoords(lat, lon) {
+
+  const apiKey = "c55bb5e40d49ac9d1ba7d5a1ad812c31";
+
+  const url =
+  `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+
+      updateCurrentWeather(data);
+      updateHomeCard(data);
+      showWeatherAlert(data);
+
+      getAirQualityByCity(data.name);
+      getForecast(data.name);
+
+      incrementStat("location");
+
+    })
+    .catch(() => {
+      alert("Unable to get location weather");
+    });
+
+}
 
 
 
