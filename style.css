@@ -459,11 +459,11 @@ body.dark .profile-options button {
 }
 
 .profile-buttons button {
-  padding: 10px 16px;
-  border-radius: 14px;
+  padding: 10px 18px;
+  border-radius: 10px;
   border: none;
-  background: white;
-  font-weight: bold;
+  background: #222;
+  color: white;
   cursor: pointer;
 }
 
@@ -720,4 +720,5 @@ button.loading {
   opacity: 0.7;
   pointer-events: none;
 }
+
 
