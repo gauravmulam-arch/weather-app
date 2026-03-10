@@ -133,11 +133,17 @@
   <button onclick="saveProfile()">💾 Save</button>
 
   <!-- Hidden file input -->
-  <input type="file" id="avatarInput" accept="image/*" capture>
+  <input
+  type="file"
+  id="avatarInput"
+  accept="image/*"
+  style="display:none"
+  onchange="uploadAvatar(event)"
+/>
       
   <button onclick="document.getElementById('avatarInput').click()">
-    🖼️ Upload Photo
-  </button>
+  🖼 Upload Photo
+</button>
 </div>
 
   </div>
@@ -198,5 +204,6 @@
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
