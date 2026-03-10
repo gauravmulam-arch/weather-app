@@ -1,6 +1,3 @@
-if (!localStorage.getItem("savedUser")) {
-  window.location.href = "login.html";
-}
 document.addEventListener("DOMContentLoaded", () => {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const path = window.location.pathname;
@@ -490,6 +487,7 @@ function uploadAvatar(event) {
 
   reader.readAsDataURL(file);
 }
+
 
 
 
