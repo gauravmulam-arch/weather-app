@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Protect home page
   if (!isLoggedIn && path.endsWith("/index.html")) {
-    window.location.href = "Pages/login.html";
+   window.location.href = "login.html";
   }
 
   // Block login/signup when logged in
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     isLoggedIn &&
     (path.endsWith("/login.html") || path.endsWith("/signup.html"))
   ) {
-    window.location.href = "../index.html";
+   window.location.href = "index.html";
   }
 });
 /* ================= LOGIN ================= */
@@ -297,14 +297,6 @@ function getWeather() {
   updateHomeCard(data); // 🔥 THIS FIXES HOME PAGE
   showWeatherAlert(data);
 
-  fetch("http://localhost:5000/save-search", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({ city: data.name })
-});
-
   getAirQualityByCity(data.name);
   getForecast(data.name);
   incrementStat("weather");
@@ -487,6 +479,7 @@ function uploadAvatar(event) {
 
   reader.readAsDataURL(file);
 }
+
 
 
 
